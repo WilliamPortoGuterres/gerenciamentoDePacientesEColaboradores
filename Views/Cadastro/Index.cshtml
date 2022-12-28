@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "Cadastro de pacientes";
+}
+
+<form id="formCadastro">
+    <fieldset class="border">
+    <legend>Dados Pessoais</legend>
+    <div class="form-group">
+      <label for="inputName">Nome</label>
+      <input type="text" class="form-control" id="inputName" name="nome" placeholder="Nome">
+    </div>
+    <div class="form-group">
+      <label for="inputEmail">Email</label>
+      <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email">
+    </div>
+    <div class="form-group">
+      <label for="inputBirthdate">Data de Nascimento</label>
+      <input type="date" class="form-control" id="inputBirthdate" name="dataNascimento">
+    </div>
+  </fieldset>
+    <fieldset class="border">
+    <legend>Endereço</legend>
+    <div class="form-group">
+      <label for="inputAddress">Logradouro</label>
+      <input type="text" class="form-control" id="inputAddress" name="logradouro" placeholder="Logradouro">
+    </div>
+    <div class="form-group">
+      <label for="inputAddress2">Complemento</label>
+      <input type="text" class="form-control" id="inputAddress2" name="complemento" placeholder="Complemento">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">Cidade</label>
+        <input type="text" class="form-control" id="inputCity" name="cidade">
+                <div class="form-group col-md-4">
+                    <label for="inputState">Estado</label>
+                    <select id="inputState" class="form-control" name="estado">
+                        <option selected>Escolha...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputZip">CEP</label>
+                    <input type="text" class="form-control" id="inputZip" name="cep">
+                </div>
+            </div>
+            </div>
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>
+
+<script>
+    // Get the form element
+    var form = document.getElementById('formCadastro');
+
+    // Add a submit event listener to the form
+    form.addEventListener('submit', function(event) {
+      // Prevent the default form submission behavior
+      event.preventDefault();
+
+      // Get the form data
+      var data = new FormData(form);
+
+      // Make an AJAX request to the server
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/CadastroController/Create', true);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          // The form submission was successful
+          // Do something here, like showing a success message or redirecting to another page
+        } else {
+          // There was an error with the form submission
+          // Do something here, like showing an error message
+        }
+      };
+      xhr.send(data);
+    });
+</script>
